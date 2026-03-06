@@ -1,22 +1,22 @@
-# Lab – React Client for Blueprints (Redux + Axios + JWT)
+# ⚛️📐 Lab – React Client for Blueprints (Redux + Axios + JWT)
 
-> Basado en el cliente HTML/JS del repo de referencia, este laboratorio moderniza el _frontend_ con **React + Vite**, **Redux Toolkit**, **Axios** (con interceptores y JWT), **React Router** y pruebas con **Vitest + Testing Library**.
+> Basado en el cliente HTML/JS del repo de referencia, este laboratorio moderniza el _frontend_ con **React + Vite**, **Redux Toolkit**, **Axios** (con interceptores y JWT), **React Router** y pruebas con **Vitest + Testing Library**. 🚀
 
-## Objetivos de aprendizaje
+## 🎯 Objetivos de aprendizaje 
 
 - Diseñar una SPA en React aplicando **componetización** y **Redux (reducers/slices)**.
 - Consumir APIs REST de Blueprints con **Axios** y manejar **estados de carga/errores**.
 - Integrar **autenticación JWT** con interceptores y rutas protegidas.
 - Aplicar buenas prácticas: estructura de carpetas, `.env`, linters, testing, CI.
 
-## Requisitos previos
+## 📋 Requisitos previos 
 
 - Tener corriendo el backend de Blueprints de los **Labs 3 y 4** (APIs + seguridad).
 - Node.js 18+ y npm.
 
 Ver la especificación de glosario clave, consulta las [Definiciones del laboratorio](./DEFINICIONES.md).
 
-## Endpoints esperados (ajústalos si tu backend quedo diferente)
+## 🔗 Endpoints esperados (ajústalos si tu backend quedo diferente) 
 
 - `GET /api/blueprints` → lista general o catálogo para derivar autores.
 - `GET /api/blueprints/{author}`
@@ -26,7 +26,7 @@ Ver la especificación de glosario clave, consulta las [Definiciones del laborat
 
 Configura la URL base en `.env`.
 
-## Cómo arrancar
+## ▶️ Cómo arrancar 
 
 ```bash
 npm install
@@ -37,7 +37,7 @@ npm run dev
 
 Abre `http://localhost:5173`
 
-## Variables de entorno
+## 🌱 Variables de entorno
 
 Crea un archivo `.env` en la raíz:
 
@@ -47,7 +47,7 @@ VITE_API_BASE_URL=http://localhost:8080/api
 
 > **Tip:** en producción usa variables seguras o un _reverse proxy_.
 
-## Estructura
+## 📁 Estructura
 
 ```carpetas
 blueprints-react-lab/
@@ -65,13 +65,13 @@ blueprints-react-lab/
 
 ## 📌 Requerimientos del laboratorio
 
-## 1. Canvas (lienzo)
+## 🖌️ 1. Canvas (lienzo) 
 
 - Agregar un lienzo (Canvas) a la página.
 - Incluir un componente `BlueprintCanvas` con un identificador propio.
 - Definir dimensiones adecuadas (ej. `520×360`) para que no ocupe toda la pantalla pero permita dibujar los planos.
 
-## 2. Listar los planos de un autor
+## 👤📐 2. Listar los planos de un autor 
 
 - Permitir ingresar el nombre de un autor y consultar sus planos desde el backend (o mock).
 - Mostrar los resultados en una tabla con las siguientes columnas:
@@ -79,7 +79,7 @@ blueprints-react-lab/
   - Número de puntos
   - Botón `Open` para abrirlo
 
-## 3. Seleccionar un plano y graficarlo
+## 📊 3. Seleccionar un plano y graficarlo 
 
 Al hacer clic en el botón `Open`, debe:
 
@@ -87,7 +87,7 @@ Al hacer clic en el botón `Open`, debe:
 - Obtener los puntos del plano correspondiente.
 - Dibujar consecutivamente los segmentos de recta en el canvas y marcar cada punto.
 
-## 4. Servicios: `apimock` y `apiclient`
+##  🔌 4. Servicios: `apimock` y `apiclient` 
 
 - Implementar dos servicios con la misma interfaz:
   - `apimock`: retorna datos de prueba desde memoria.
@@ -108,18 +108,18 @@ VITE_USE_MOCK=true
 - `VITE_USE_MOCK=true` usa el mock.
 - `VITE_USE_MOCK=false` usa el API real.
 
-## 5. Interfaz con React
+## ⚛️ 5. Interfaz con React 
 
 - El nombre del plano actual debe mostrarse en el DOM como parte del estado global (Redux).
 - Evitar manipular directamente el DOM; usar componentes y props/estado.
 
-## 6. Estilos
+## 🎨 6. Estilos 
 
 - Agregar estilos para mejorar la presentación.
 - Se puede usar Bootstrap u otro framework CSS.
 - Ajustar la tabla, botones y tarjetas para acercarse al mock de referencia.
 
-## 7. Pruebas unitarias
+## 🧪 7. Pruebas unitarias 
 
 - Agregar pruebas con Vitest + Testing Library para validar:
   - Render del canvas.
@@ -128,7 +128,7 @@ VITE_USE_MOCK=true
 
 ---
 
-### Notas rápidas y recomendaciones
+### 💡 Notas rápidas y recomendaciones
 
 - Para el canvas en tests con jsdom: agregar un mock de `HTMLCanvasElement.prototype.getContext` en `tests/setup.js`.
 - Para usar `@testing-library/jest-dom` con Vitest: en `tests/setup.js` importar `import '@testing-library/jest-dom'` y asegurarse de que Vitest provea el global `expect` (configurar `vitest.config.js` con la opción `test: { globals: true, setupFiles: './tests/setup.js' }`).
@@ -157,7 +157,7 @@ VITE_USE_MOCK=true
 8. **Docker (opcional)**
    - [ ] Crea `Dockerfile` (+ `compose`) para front + backend.
 
-## Criterios de evaluación
+## ✅ Criterios de evaluación
 
 - Funcionalidad y cobertura de casos (30%)
 - Calidad de código y arquitectura (Redux, componentes, servicios) (25%)
@@ -166,7 +166,7 @@ VITE_USE_MOCK=true
 - Seguridad (JWT/Interceptores/Rutas protegidas) (10%)
 - CI/Lint/Format (5%)
 
-## Scripts
+## 📜 Scripts
 
 - `npm run dev` – servidor de desarrollo Vite
 - `npm run build` – build de producción
@@ -177,7 +177,7 @@ VITE_USE_MOCK=true
 
 ---
 
-### Extensiones propuestas del reto
+### 🚀 Extensiones propuestas del reto
 
 - **Redux Toolkit Query** para _caching_ de requests.
 - **MSW** para _mocks_ sin backend.
