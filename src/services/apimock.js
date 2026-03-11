@@ -34,6 +34,18 @@ const apimock = {
   create: async (blueprint) => {
     mockData.push(blueprint);
     return blueprint;
+  },
+  update: async (author, name, blueprint) => {
+    const index = mockData.findIndex(bp => bp.author === author && bp.name === name)
+    if (index === -1) throw new Error('Blueprint not found')
+      mockData[index] = { ...mockData[index], ...blueprint }
+    return mockData[index]
+  },
+  remove: async (author, name) => {
+    const index = mockData.findIndex(bp => bp.author === author && bp.name === name);
+    if (index !== -1) {
+      mockData.splice(index, 1);
+    }
   }
 };
 

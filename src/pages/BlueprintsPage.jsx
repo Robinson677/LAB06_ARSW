@@ -4,15 +4,18 @@ import {
   fetchAuthors,
   fetchByAuthor,
   fetchBlueprint,
+  deleteBlueprint,
+  selectTop5,
 } from '../features/blueprints/blueprintsSlice.js'
 import BlueprintCanvas from '../components/BlueprintCanvas.jsx'
 
 export default function BlueprintsPage() {
   const dispatch = useDispatch()
-  const { byAuthor, current, status } = useSelector((s) => s.blueprints)
+  const { byAuthor, current, status, error } = useSelector((s) => s.blueprints)
   const [authorInput, setAuthorInput] = useState('')
   const [selectedAuthor, setSelectedAuthor] = useState('')
   const items = byAuthor[selectedAuthor] || []
+  const top5 = useSelector((s) => selectTop5(s, selectedAuthor))
 
   useEffect(() => {
     dispatch(fetchAuthors())
@@ -31,6 +34,12 @@ export default function BlueprintsPage() {
 
   const openBlueprint = (bp) => {
     dispatch(fetchBlueprint({ author: bp.author, name: bp.name }))
+  }
+
+  const handleDelete = (bp) => {
+    if (window.confirm(`¿Eliminar "${bp.name}"?`)) {
+      dispatch(deleteBlueprint({ author: bp.author, name: bp.name }))
+    }
   }
 
   return (
@@ -56,6 +65,14 @@ export default function BlueprintsPage() {
             {selectedAuthor ? `${selectedAuthor}'s blueprints:` : 'Results'}
           </h3>
           {status === 'loading' && <p>Cargando...</p>}
+          {status === 'failed' && (
+            <div style={{ color: '#f87171' }}>
+              ⚠️ {error}
+              <button onClick={() => dispatch(fetchByAuthor(selectedAuthor))}>
+                Reintentar
+                </button>
+                </div>
+            )}
           {!items.length && status !== 'loading' && <p>Sin resultados.</p>}
           {!!items.length && (
             <div style={{ overflowX: 'auto' }}>
@@ -63,6 +80,7 @@ export default function BlueprintsPage() {
                 <thead>
                   <tr>
                     <th
+                      scope="col"
                       style={{
                         textAlign: 'left',
                         padding: '8px',
@@ -72,6 +90,7 @@ export default function BlueprintsPage() {
                       Blueprint name
                     </th>
                     <th
+                      scope="col"
                       style={{
                         textAlign: 'right',
                         padding: '8px',
@@ -80,7 +99,17 @@ export default function BlueprintsPage() {
                     >
                       Number of points
                     </th>
-                    <th style={{ padding: '8px', borderBottom: '1px solid #334155' }}></th>
+                    <th
+                      scope="col"
+                      colSpan={2}
+                      style={{
+                        padding: '8px',
+                        borderBottom: '1px solid #334155',
+                        textAlign: 'center',
+                      }}
+                    >
+                      Actions
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -102,6 +131,11 @@ export default function BlueprintsPage() {
                         <button className="btn" onClick={() => openBlueprint(bp)}>
                           Open
                         </button>
+                      </td>
+                      <td style={{ padding: '8px', borderBottom: '1px solid #1f2937' }}>
+                        <button className="btn" style={{ color: '#f87171' }} onClick={() => handleDelete(bp)}>
+                          Delete
+                          </button>
                       </td>
                     </tr>
                   ))}

@@ -1,7 +1,9 @@
 name: node-ci
 on:
   push:
+    branches: [main, develop]
   pull_request:
+    branches: [main]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -15,3 +17,8 @@ jobs:
       - run: npm run lint
       - run: npm test
       - run: npm run build
+        env:
+          VITE_API_BASE_URL: http://localhost:8080/api
+          VITE_USE_MOCK: 'true'
+
+          

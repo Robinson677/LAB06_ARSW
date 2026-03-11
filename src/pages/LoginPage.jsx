@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import api from '../services/apiClient.js'
+import { useDispatch } from 'react-redux'
+import { loginSuccess } from '../features/auth/authSlice'
 
 export default function LoginPage() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState(null)
+  const dispatch = useDispatch()
 
   const submit = async (e) => {
     e.preventDefault()
@@ -15,7 +18,7 @@ export default function LoginPage() {
       const tokenRecibido = data.access_token || data.token; 
       
       if (tokenRecibido) {
-        localStorage.setItem('token', tokenRecibido); 
+        dispatch(loginSuccess(tokenRecibido))
         alert('Login exitoso');
       } else {
         console.error("El servidor no envió 'access_token' ni 'token'", data);
