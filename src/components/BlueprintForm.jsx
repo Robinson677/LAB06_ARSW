@@ -10,7 +10,7 @@ export default function BlueprintForm({ onSubmit }) {
     try {
       const points = JSON.parse(pointsJSON)
       onSubmit({ author, name, points })
-    } catch (e) {
+    } catch (err) {
       alert('JSON de puntos inválido')
     }
   }
@@ -18,10 +18,12 @@ export default function BlueprintForm({ onSubmit }) {
   return (
     <form onSubmit={handle} className="card">
       <h3 style={{ marginTop: 0 }}>Crear Blueprint</h3>
+      
       <div className="grid cols-2">
         <div>
-          <label>Autor</label>
+          <label htmlFor="author-input">Autor</label>
           <input
+            id="author-input"
             className="input"
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
@@ -29,8 +31,9 @@ export default function BlueprintForm({ onSubmit }) {
           />
         </div>
         <div>
-          <label>Nombre</label>
+          <label htmlFor="name-input">Nombre</label>
           <input
+            id="name-input"
             className="input"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -38,17 +41,20 @@ export default function BlueprintForm({ onSubmit }) {
           />
         </div>
       </div>
+
       <div style={{ marginTop: 12 }}>
-        <label>Puntos (JSON)</label>
+        <label htmlFor="points-input">Puntos (JSON)</label>
         <textarea
+          id="points-input"
           className="input"
           rows="5"
           value={pointsJSON}
           onChange={(e) => setPointsJSON(e.target.value)}
         />
       </div>
+
       <div style={{ marginTop: 12 }}>
-        <button className="btn primary">Guardar</button>
+        <button type="submit" className="btn primary">Guardar</button>
       </div>
     </form>
   )
