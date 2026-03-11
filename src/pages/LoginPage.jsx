@@ -11,10 +11,18 @@ export default function LoginPage() {
     setError(null)
     try {
       const { data } = await api.post('/auth/login', { username, password })
-      localStorage.setItem('token', data.token)
-      alert('Login exitoso')
+      
+      const tokenRecibido = data.access_token || data.token; 
+      
+      if (tokenRecibido) {
+        localStorage.setItem('token', tokenRecibido); 
+        alert('Login exitoso');
+      } else {
+        console.error("El servidor no envió 'access_token' ni 'token'", data);
+        setError('Error en el formato del token');
+      }
     } catch (e) {
-      setError('Credenciales inválidas o servidor no disponible')
+      setError('Credenciales inválidas o servidor no disponible');
     }
   }
 

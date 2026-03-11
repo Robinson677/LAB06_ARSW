@@ -6,10 +6,15 @@ export default function BlueprintCanvas({ points = [], width = 520, height = 360
   useEffect(() => {
     const canvas = ref.current
     if (!canvas) return
+    
     const ctx = canvas.getContext('2d')
+    
+    if (!ctx) return 
+
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     ctx.fillStyle = '#0b1220'
     ctx.fillRect(0, 0, canvas.width, canvas.height)
+
     ctx.strokeStyle = 'rgba(148,163,184,0.15)'
     ctx.lineWidth = 1
     for (let x = 0; x < canvas.width; x += 40) {
@@ -24,6 +29,7 @@ export default function BlueprintCanvas({ points = [], width = 520, height = 360
       ctx.lineTo(canvas.width, y)
       ctx.stroke()
     }
+
     if (points.length > 1) {
       ctx.strokeStyle = '#93c5fd'
       ctx.lineWidth = 2
@@ -35,6 +41,7 @@ export default function BlueprintCanvas({ points = [], width = 520, height = 360
       }
       ctx.stroke()
     }
+
     ctx.fillStyle = '#fbbf24'
     for (const p of points) {
       ctx.beginPath()
