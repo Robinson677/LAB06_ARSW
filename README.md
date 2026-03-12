@@ -137,6 +137,11 @@ VITE_USE_MOCK=true
 
 ---
 
+## Solución:
+[Ver en PDF el Desarrollo de los requerimientos](./docs/LAB06_ARSW_Requerimientos.pdf)
+
+---
+
 ### 💡 Notas rápidas y recomendaciones
 
 - Para el canvas en tests con jsdom: agregar un mock de `HTMLCanvasElement.prototype.getContext` en `tests/setup.js`.
@@ -165,6 +170,14 @@ VITE_USE_MOCK=true
    - [ ] Activa **GitHub Actions** (workflow incluido) → lint + test + build.
 8. **Docker (opcional)**
    - [ ] Crea `Dockerfile` (+ `compose`) para front + backend.
+
+
+---
+
+## Solución:
+[Ver en PDF el Desarrollo de las Recomendaciones](./docs/LAB06_ARSW_Recomendaciones.pdf)
+
+---
 
 ## ✅ Criterios de evaluación
 
